@@ -2,7 +2,7 @@
 import json
 import os
 import re
-
+import streamlit as st
 from google import genai
 from google.genai import types
 
@@ -12,7 +12,6 @@ from config import GEMINI_MODEL
 from utils.logger import get_logger
 
 logger = get_logger(__name__)
-
 
 class PersonIntelAgent:
     """
@@ -24,7 +23,7 @@ class PersonIntelAgent:
     """
 
     def __init__(self) -> None:
-        api_key = os.getenv("GOOGLE_API_KEY")
+        api_key = st.secrets["GOOGLE_API_KEY"]
         if not api_key:
             raise EnvironmentError("GOOGLE_API_KEY must be set in your .env file.")
         self.client = genai.Client(api_key=api_key)
