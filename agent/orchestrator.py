@@ -25,7 +25,7 @@ class PersonIntelAgent:
     def __init__(self) -> None:
         api_key = st.secrets["GOOGLE_API_KEY"]
         if not api_key:
-            raise EnvironmentError("GOOGLE_API_KEY must be set in your .env file.")
+            raise EnvironmentError("GOOGLE_API_KEY must be set in your streamlit secrets file.")
         self.client = genai.Client(api_key=api_key)
         self._search_tool = types.Tool(google_search=types.GoogleSearch())
 
